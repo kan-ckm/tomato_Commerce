@@ -1,0 +1,185 @@
+:root {
+    --color-232f3e: #232f3e;
+    --coler-febd69: #febd69;
+    --coler-bf4800: #bf4800;
+    --coler-131921:#131921;
+}
+.customShadow{
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+}
+
+/*userTable */
+.userTable{
+    @apply bg-white 
+}
+.userTable th{
+    @apply border text-base font-medium
+
+}
+.userTable td{
+    @apply border text-base text-center
+
+}
+/* scrollbar hiden */
+.scrollbar-none::-webkit-scrollbar{
+ display: none;
+}
+
+.logo{
+    filter: invert(1);
+}
+.banner-container {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép xuống hàng */
+    gap: 10px; /* Khoảng cách giữa các banner */
+    align-items: flex-start; /* Căn các banner theo chiều dọc */
+}
+/* home baner */
+.main-banner{
+
+}
+
+.main-banner-content{
+ top:-20%;
+ left: 2%;     
+}
+
+.main-banner-content h4{
+   
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--coler-bf4800);
+    margin: 0 0 12px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+
+}
+
+.main-banner-content h5{
+    font-size: 45px;
+    line-height: 54px;
+    letter-spacing: -2px;
+    font-weight: 500;
+    text-transform: none;
+}
+.main-banner-content p{
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.4;
+    color: var(--coler-131921);
+}
+.main-banner-content2{
+ top:-20%;
+ left: 2%;     
+}
+
+.main-banner-content2 h4{
+   
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--coler-bf4800);
+    margin: 0 0 12px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+
+}
+
+.main-banner-content2 h5{
+    font-size: 45px;
+    line-height: 54px;
+    letter-spacing: -2px;
+    font-weight: 500;
+    text-transform: none;
+}
+.main-banner-content2 p{
+    font-size: 18px;
+    line-height: 30px;
+    letter-spacing: 0.4;
+    color: var(--coler-131921);
+}
+
+.button{
+    background-color: var(--color-232f3e);
+    color: white;
+    font-size: 14px;
+    padding: 13px 33px;
+    line-height: 20px;
+    width: 170px;
+  
+}
+.button:hover{
+    background-color: var(--coler-febd69);
+    color: #131921;
+}
+.button-small{
+    background-color: var(--color-232f3e);
+    color: white;
+   
+  
+}
+.button-small:hover{
+    background-color: var(--coler-febd69);
+    color: #131921;
+}
+.delete-button{
+
+    color: var( --coler-131921); 
+   
+  
+}
+.delete-button:hover{
+    background-color: var(--coler-febd69);
+    color: #ffffff;
+}
+
+ .small-banner{
+width: 48%;
+ }
+.small-banner-content{
+ top:20%;
+ left: 10%;     
+ 
+}
+
+.small-banner-content h4{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--coler-bf4800);
+    margin: 0 0 12px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+
+}
+
+.small-banner-content h5{
+    font-size: 22px;
+    line-height: 34px;
+    letter-spacing: -2px;
+    font-weight: 500;
+    text-transform: none;
+}
+.small-banner-content p{
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: 0.4;
+    color: var(--coler-131921);
+}
+
+
+/* ẩn thanh kéo */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;     
+  }
+  
+
+
+  
+
+  

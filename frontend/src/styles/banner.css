@@ -1,0 +1,26 @@
+/* Đổi màu chấm tròn */
+.swiper-pagination-bullet {
+    background-color: black !important;
+    opacity: 1;
+
+  }
+  
+  /* Màu chấm tròn khi được chọn */
+  .swiper-pagination-bullet-active {
+    background-color: white !important; 
+    
+  }
+
+  .button-banner{
+    background-color: var(--color-232f3e);
+    color: white;
+    font-size: 14px;
+    padding: 13px 33px;
+    line-height: 20px;
+    width: 130px;
+  
+}
+.button-banner:hover{
+    background-color: var(--coler-febd69);
+    color: #131921;
+}

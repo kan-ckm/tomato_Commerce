@@ -1,0 +1,13 @@
+.button-cartProduct{
+    background-color: var(--color-232f3e);
+    color: white;
+    font-size: 14px;
+    padding: 13px 33px;
+    line-height: 20px;
+    width: 219px;
+  
+}
+.button-cartProduct:hover{
+    background-color: var(--coler-febd69);
+    color: #131921;
+}

@@ -1,0 +1,38 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing & Coverage
+/coverage
+
+# Production
+/build
+/dist
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+!env.sample
+!.env.sample
+
+# Uploads
+/uploads/*
+!/uploads/.gitkeep
+
+# Executables & Binaries
+*.exe
+config/stripe_1.26.1_windows_x86_64/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Misc / OS / Editor
+.DS_Store
+.idea/
+.vscode/

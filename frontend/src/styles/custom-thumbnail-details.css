@@ -1,0 +1,43 @@
+.custom-main-swiper-small .swiper-slide-thumb-active {
+    border: 2px solid #ff5733; /* Chọn màu border tùy thích */
+    transition: border-color 0.3s ease;
+    height: 84px;
+    width: 150px;
+    border-radius: 10px; 
+  }
+
+
+  .custom-main-swiper .swiper-button-next {
+    border-radius: 100px 0 0 100px !important;
+    padding-left: 4px !important;
+    right: 0 !important;
+    font-size: 0.5rem !important;
+}
+.custom-main-swiper .swiper-button-prev {
+    border-radius: 0 100px 100px 0 !important;
+    left: 0 !important;
+    padding-right: 4px !important;
+    font-size: 0.5rem !important;
+}
+.custom-main-swiper  .swiper-button-next,.custom-main-swiper   .swiper-button-prev {
+    color: #131921 !important;
+    align-items: center !important;
+    background: #fff !important;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, .2) !important;
+    display: flex !important;
+    height: 60px !important;
+    justify-content: center !important;
+    opacity: .8 !important;
+    outline: none !important;
+    top: 50% !important;
+    transition: .3s !important;
+    width: 30px !important;
+}
+.custom-main-swiper .swiper-button-next::after,.custom-main-swiper  .swiper-button-prev::after {
+    font-size: 20px !important; 
+}
+.custom-main-swiper .swiper-button-disabled {
+    opacity: 0.3 !important; /* Làm mờ */
+    pointer-events: none !important; /* Vô hiệu hóa click */
+    transition: opacity 0.3s ease-in-out;
+}

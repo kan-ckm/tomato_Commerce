@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Ghi đè cho modal header */
+.ant-modal-header {
+    background-color: #18212F !important;
+    color: white !important;
+  }
+  
+  /* Ghi đè cho modal content */
+  .ant-modal-content {
+    background-color: #18212F !important;
+     border: 1px solid #374151 !important;
+
+  }
+  
+  /* Chỉnh sửa modal title */
+.modal-title {
+  color: white;
+}
+
+/* Chỉnh sửa nút "Save" */
+.ok-button {
+  background-color: #1d4ed8;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ok-button:hover {
+  background-color: #2563eb;
+}
+
+/* Chỉnh sửa nút "Cancel" */
+.cancel-button {
+  background-color: #475569; 
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-button:hover {
+  background-color: #334155 !important; /* Màu nền khi hover */
+  color: white !important;
+}
+/* Vùng hiển thị chính */
+.custom-select .ant-select-selector {
+  background-color: #1f2937 !important; /* bg-gray-800 */
+  color: white !important;
+  border-color: #4b5563 !important; /* slate-600 */
+}
+
+/* Khi chọn */
+.custom-select .ant-select-selection-item {
+  color: white !important;
+}
+
+/* Nền khi mở dropdown */
+.custom-select-dropdown {
+  background-color: #1f2937 !important; /* bg-gray-800 */
+}
+
+/* Tùy chỉnh từng Option */
+.custom-select-dropdown .ant-select-item {
+  background-color: #1f2937 !important;
+  color: white !important;
+}
+
+/* Khi hover Option */
+.custom-select-dropdown .ant-select-item-option-active {
+  background-color: #374151 !important;
+}
+
+/* Khi được chọn */
+.custom-select-dropdown .ant-select-item-option-selected {
+  background-color: #2563eb !important;
+  color: white !important;
+}
