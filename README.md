@@ -1,4 +1,4 @@
-# 🍅 Tomato Store - Nền Tảng Thương Mại Điện Tử & Quản Trị Toàn Diện (Fullstack E-Commerce)
+# 🍅 Tomato Store - Nền Tảng Thương Mại Điện Tử & Quản Trị(Fullstack E-Commerce)
 
 Hệ thống thương mại điện tử hiện đại kiến trúc Fullstack Monorepo, tích hợp cổng thanh toán trực tuyến quốc tế Stripe, lưu trữ hình ảnh nội bộ server (Local Disk Storage via Multer), xác thực bảo mật JWT qua Cookie, đa ngôn ngữ (i18n) cùng bảng điều khiển phân tích số liệu quản trị (Admin Analytics Dashboard) chuyên sâu.
 
