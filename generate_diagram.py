@@ -1,0 +1,348 @@
+#!/usr/bin/env python3
+import subprocess
+
+svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2080 1200" width="2080" height="1200">
+  <defs>
+    <!-- Arrow Markers -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#0284C7"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#16A34A"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#9333EA"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#E11D48"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#EA580C"/>
+    </marker>
+    <marker id="arrow-indigo" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#4F46E5"/>
+    </marker>
+    <marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#0D9488"/>
+    </marker>
+
+    <!-- Filters for hand-drawn / Excalidraw shadow -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-opacity="0.06" flood-color="#0F172A"/>
+    </filter>
+  </defs>
+
+  <style>
+    .hand { font-family: 'Comic Neue', 'Google Sans Flex', 'DejaVu Sans', cursive, sans-serif; }
+    .title { font-weight: 700; fill: #0F172A; }
+    .subtitle { font-weight: 400; fill: #64748B; }
+    .col-title { font-weight: 700; font-size: 21px; fill: #1E293B; }
+    .card-title { font-weight: 700; font-size: 18px; fill: #0F172A; }
+    .badge { font-weight: 700; font-size: 12px; }
+    .desc { font-size: 13px; fill: #334155; line-height: 1.4; }
+    .detail { font-size: 12px; fill: #475569; }
+    .highlight { font-weight: 700; fill: #991B1B; }
+    .edge-label { font-size: 11.5px; font-weight: 700; fill: #1E293B; }
+  </style>
+
+  <!-- Canvas Background -->
+  <rect width="2080" height="1200" fill="#FFFFFF"/>
+
+  <!-- ==================== HEADER ==================== -->
+  <text x="1040" y="38" text-anchor="middle" class="hand title" font-size="30">Tomato Store - System Architecture</text>
+  <text x="1040" y="62" text-anchor="middle" class="hand subtitle" font-size="14.5">Fullstack Monorepo Architecture • React 18 &amp; Vite Admin • Node.js/Express REST API • MongoDB 8.2 • Cloudinary CDN &amp; Stripe Payment</text>
+
+  <!-- ==================== TOP ROW ==================== -->
+
+  <!-- [1] SECTION: CLIENTS & FRONTEND (Top-Left) -->
+  <rect x="35" y="100" width="390" height="615" rx="18" ry="18" fill="#F8FAFC" stroke="#64748B" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="55" y="113" width="350" height="36" rx="8" fill="#E2E8F0"/>
+  <text x="230" y="137" text-anchor="middle" class="hand col-title">🖥️ Clients &amp; Frontend</text>
+
+  <!-- 1.1 Customer Web App -->
+  <rect x="55" y="165" width="350" height="255" rx="14" ry="14" fill="#E0F2FE" stroke="#0284C7" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="70" y="177" width="130" height="24" rx="6" fill="#0284C7"/>
+  <text x="135" y="193" text-anchor="middle" class="hand badge" fill="#FFFFFF">PORT :3000</text>
+  <text x="70" y="225" class="hand card-title">Customer Web App</text>
+  <text x="70" y="245" class="hand detail" font-weight="700">React 18 • Redux Toolkit • Tailwind CSS</text>
+  <line x1="70" y1="255" x2="390" y2="255" stroke="#BAE6FD" stroke-width="1.5"/>
+  <text x="70" y="278" class="hand desc">• Storefront &amp; Smart Search / Filtering</text>
+  <text x="70" y="300" class="hand desc">• Cart Management &amp; Stock Checks</text>
+  <text x="70" y="322" class="hand desc">• Stripe Checkout SDK (@stripe/stripe-js)</text>
+  <text x="70" y="344" class="hand desc">• Multi-Language Support (i18next)</text>
+  <text x="70" y="366" class="hand desc">• User Orders, Profile &amp; Product Reviews</text>
+  <text x="70" y="396" class="hand detail" fill="#0369A1">⚡ Streams catalog photos directly from Cloudinary</text>
+
+  <!-- 1.2 Admin Dashboard -->
+  <rect x="55" y="440" width="350" height="255" rx="14" ry="14" fill="#DCFCE7" stroke="#16A34A" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="70" y="452" width="160" height="24" rx="6" fill="#16A34A"/>
+  <text x="150" y="468" text-anchor="middle" class="hand badge" fill="#FFFFFF">PORT :5173 (VITE)</text>
+  <text x="70" y="500" class="hand card-title">Admin Dashboard</text>
+  <text x="70" y="520" class="hand detail" font-weight="700">Vite • React 18 • Recharts • Radix UI</text>
+  <line x1="70" y1="530" x2="390" y2="530" stroke="#BBF7D0" stroke-width="1.5"/>
+  <text x="70" y="552" class="hand desc">• Sales Analytics, Heatmaps &amp; Revenue Trends</text>
+  <text x="70" y="574" class="hand desc">• Product Management (CRUD &amp; Inventory)</text>
+  <text x="70" y="596" class="hand desc">• Multi-Image Upload (Multer /uploads/)</text>
+  <text x="70" y="618" class="hand desc">• User Role Administration (Admin / User)</text>
+  <text x="70" y="640" class="hand desc">• Order Processing &amp; Daily Stats Tracking</text>
+  <text x="70" y="672" class="hand detail" fill="#15803D">🔒 Protected via adminAuth middleware</text>
+
+
+  <!-- [2] SECTION: BACKEND REST API SERVER (Top-Center) -->
+  <rect x="465" y="100" width="970" height="615" rx="18" ry="18" fill="#F8FAFC" stroke="#64748B" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="485" y="113" width="930" height="36" rx="8" fill="#E2E8F0"/>
+  <text x="950" y="137" text-anchor="middle" class="hand col-title">⚙️ Backend REST API Server (Node.js &amp; Express :8080)</text>
+
+  <!-- 2.1 API Gateway & Security -->
+  <rect x="485" y="165" width="450" height="225" rx="14" ry="14" fill="#FFEDD5" stroke="#EA580C" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="500" y="177" width="160" height="24" rx="6" fill="#EA580C"/>
+  <text x="580" y="193" text-anchor="middle" class="hand badge" fill="#FFFFFF">ROUTER &amp; SECURITY</text>
+  <text x="500" y="225" class="hand card-title">API Gateway &amp; Middleware</text>
+  <line x1="500" y1="235" x2="920" y2="235" stroke="#FED7AA" stroke-width="1.5"/>
+  <text x="500" y="258" class="hand desc">• JWT Cookie Auth (authToken / HTTP-Only)</text>
+  <text x="500" y="280" class="hand desc">• Role Guard Middleware (adminAuth)</text>
+  <text x="500" y="302" class="hand desc">• CORS Origin: localhost:3000 &amp; :5173</text>
+  <text x="500" y="324" class="hand desc">• Raw Stripe Webhook Body Parser</text>
+  <text x="500" y="346" class="hand desc">• Static Asset Dispatcher: app.use('/uploads', ...)</text>
+  <text x="500" y="374" class="hand detail" fill="#C2410C">✓ Fixed case-sensitive paymentController route</text>
+
+  <!-- 2.2 Controllers -->
+  <rect x="950" y="165" width="465" height="225" rx="14" ry="14" fill="#F3E8FF" stroke="#9333EA" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="965" y="177" width="150" height="24" rx="6" fill="#9333EA"/>
+  <text x="1040" y="193" text-anchor="middle" class="hand badge" fill="#FFFFFF">BUSINESS LOGIC</text>
+  <text x="965" y="225" class="hand card-title">Application Controllers</text>
+  <line x1="965" y1="235" x2="1400" y2="235" stroke="#E9D5FF" stroke-width="1.5"/>
+  <text x="965" y="258" class="hand desc">• <tspan font-weight="700">Product:</tspan> Catalog, CategoryWise, Filters</text>
+  <text x="965" y="280" class="hand desc">• <tspan font-weight="700">Cart:</tspan> Stock-checked Add, Qty Update</text>
+  <text x="965" y="302" class="hand desc">• <tspan font-weight="700">Payment:</tspan> Pre-checkout Inventory Validation</text>
+  <text x="965" y="324" class="hand desc">• <tspan font-weight="700">Order:</tspan> Order Lists, Details &amp; Admin Ops</text>
+  <text x="965" y="346" class="hand desc">• <tspan font-weight="700">User &amp; Admin:</tspan> Auth, Profile, OTP Reset</text>
+  <text x="965" y="374" class="hand detail" fill="#7E22CE">⚡ Dispatches queries to Mongoose &amp; external APIs</text>
+
+  <!-- 2.3 Race Condition Guard (Full Width of Backend) -->
+  <rect x="485" y="410" width="930" height="285" rx="14" ry="14" fill="#FFE4E6" stroke="#E11D48" stroke-width="3" filter="url(#shadow)"/>
+  <rect x="505" y="423" width="280" height="26" rx="6" fill="#E11D48"/>
+  <text x="645" y="440" text-anchor="middle" class="hand badge" fill="#FFFFFF">INVENTORY &amp; CONCURRENCY CONTROL</text>
+  <text x="505" y="475" class="hand card-title" fill="#9F1239">🛡️ Race Condition &amp; Concurrency Guard (Anti-Overselling Engine)</text>
+  <line x1="505" y1="487" x2="1395" y2="487" stroke="#FECDD3" stroke-width="2"/>
+
+  <!-- Left Column of Guard (x: 505 to 940) -->
+  <text x="505" y="512" class="hand desc"><tspan class="highlight">1. Pre-Checkout Inventory Check:</tspan></text>
+  <text x="525" y="532" class="hand detail">paymentController checks countInStock ≥ qty before session</text>
+
+  <text x="505" y="558" class="hand desc"><tspan class="highlight">2. Atomic $gte Deduction in MongoDB:</tspan></text>
+  <text x="525" y="578" class="hand detail">findOneAndUpdate({ _id, countInStock: { $gte: qty } }, { $inc... })</text>
+
+  <text x="505" y="604" class="hand desc"><tspan class="highlight">3. Webhook Idempotency Check:</tspan></text>
+  <text x="525" y="624" class="hand detail">findOne({ 'paymentDetails.paymentId' }) drops duplicates</text>
+
+  <!-- Right Column of Guard (x: 960 to 1400) -->
+  <text x="960" y="512" class="hand desc"><tspan class="highlight">4. Multi-Item Auto-Rollback:</tspan></text>
+  <text x="980" y="532" class="hand detail">If item N is out of stock, items 1..N-1 are restored to DB</text>
+
+  <text x="960" y="558" class="hand desc"><tspan class="highlight">5. Automated Stripe Refund:</tspan></text>
+  <text x="980" y="578" class="hand detail">stripe.refunds.create() if buyer loses race for last item</text>
+
+  <text x="960" y="604" class="hand desc"><tspan class="highlight">6. Audit Log &amp; Order Status:</tspan></text>
+  <text x="980" y="624" class="hand detail">Saved as 'Cancelled'/'Refunded' with note in OrderModel</text>
+
+  <rect x="505" y="648" width="890" height="28" rx="6" fill="#FEE2E2"/>
+  <text x="950" y="667" text-anchor="middle" class="hand badge" fill="#991B1B">✓ 100% PASS trên bộ test đồng thời (npm test) - Đảm bảo không bán khống khi 2 người cùng mua món cuối</text>
+
+
+  <!-- [3] SECTION: EXTERNAL CLOUD SERVICES (Top-Right) -->
+  <rect x="1570" y="100" width="475" height="615" rx="18" ry="18" fill="#F8FAFC" stroke="#64748B" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="1590" y="113" width="435" height="36" rx="8" fill="#E2E8F0"/>
+  <text x="1807" y="137" text-anchor="middle" class="hand col-title">☁️ External Cloud Services</text>
+
+  <!-- 3.1 Cloudinary CDN -->
+  <rect x="1590" y="165" width="435" height="155" rx="14" ry="14" fill="#E0F2FE" stroke="#0284C7" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="1605" y="177" width="160" height="24" rx="6" fill="#0284C7"/>
+  <text x="1685" y="193" text-anchor="middle" class="hand badge" fill="#FFFFFF">MEDIA CDN HOST</text>
+  <text x="1605" y="225" class="hand card-title">Cloudinary Media CDN</text>
+  <text x="1605" y="245" class="hand detail" font-weight="700">res.cloudinary.com/ddjvcv8gf/</text>
+  <line x1="1605" y1="255" x2="2010" y2="255" stroke="#BAE6FD" stroke-width="1.5"/>
+  <text x="1605" y="278" class="hand desc">• <tspan font-weight="700" fill="#0369A1">Host của 100% ảnh catalog mẫu (611 ảnh WebP)</tspan></text>
+  <text x="1605" y="300" class="hand desc">• Trình duyệt khách hàng tải ảnh trực tiếp qua CDN Edge</text>
+
+  <!-- 3.2 Stripe -->
+  <rect x="1590" y="340" width="435" height="205" rx="14" ry="14" fill="#EDE9FE" stroke="#4F46E5" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="1605" y="352" width="170" height="24" rx="6" fill="#4F46E5"/>
+  <text x="1690" y="368" text-anchor="middle" class="hand badge" fill="#FFFFFF">PAYMENT GATEWAY</text>
+  <text x="1605" y="400" class="hand card-title">Stripe Payment Gateway</text>
+  <text x="1605" y="420" class="hand detail" font-weight="700">Stripe SDK v18 • Sessions • Webhook Listener</text>
+  <line x1="1605" y1="430" x2="2010" y2="430" stroke="#DDD6FE" stroke-width="1.5"/>
+  <text x="1605" y="452" class="hand desc">• <tspan font-weight="700">POST /api/checkout:</tspan> Tạo phiên thanh toán thẻ</text>
+  <text x="1605" y="474" class="hand desc">• <tspan font-weight="700">Webhook:</tspan> checkout.session.completed trừ kho</text>
+  <text x="1605" y="496" class="hand desc">• <tspan font-weight="700">Auto-Refund:</tspan> stripe.refunds.create() khi hết kho</text>
+  <text x="1605" y="525" class="hand detail" fill="#4338CA">✓ adjustable_quantity: false chống gian lận số lượng</text>
+
+  <!-- 3.3 Google SMTP -->
+  <rect x="1590" y="565" width="435" height="135" rx="14" ry="14" fill="#FCE7F3" stroke="#DB2777" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="1605" y="577" width="140" height="24" rx="6" fill="#DB2777"/>
+  <text x="1675" y="593" text-anchor="middle" class="hand badge" fill="#FFFFFF">EMAIL SERVICE</text>
+  <text x="1605" y="625" class="hand card-title">Google SMTP (Nodemailer)</text>
+  <text x="1605" y="648" class="hand desc">• Gửi mã OTP khôi phục mật khẩu (resetPasswordCode)</text>
+  <text x="1605" y="672" class="hand desc">• Gửi email xác nhận giao dịch &amp; thông báo hệ thống</text>
+
+
+  <!-- ==================== BOTTOM ROW ==================== -->
+
+  <!-- [4] SECTION: PERSONAS & ACTORS (Bottom-Left) -->
+  <rect x="35" y="745" width="390" height="395" rx="18" ry="18" fill="#FEF3C7" stroke="#D97706" stroke-width="2.5" stroke-dasharray="6,4" filter="url(#shadow)"/>
+  <rect x="55" y="758" width="350" height="36" rx="8" fill="#FDE68A"/>
+  <text x="230" y="782" text-anchor="middle" class="hand col-title" fill="#B45309">👥 Target Personas</text>
+
+  <text x="60" y="825" class="hand card-title" fill="#B45309">🛍️ Shopper / Customer:</text>
+  <text x="60" y="850" class="hand desc">• Duyệt 147 sản phẩm theo danh mục &amp; lọc giá</text>
+  <text x="60" y="873" class="hand desc">• Quản lý giỏ hàng, cập nhật số lượng</text>
+  <text x="60" y="896" class="hand desc">• Thanh toán quốc tế qua cổng Stripe Checkout</text>
+  <text x="60" y="919" class="hand desc">• Theo dõi đơn hàng &amp; đánh giá nhận xét sản phẩm</text>
+
+  <line x1="60" y1="945" x2="405" y2="945" stroke="#FCD34D" stroke-width="2"/>
+
+  <text x="60" y="980" class="hand card-title" fill="#B45309">👑 Administrator:</text>
+  <text x="60" y="1005" class="hand desc">• Theo dõi dashboard biểu đồ doanh thu &amp; đơn hàng</text>
+  <text x="60" y="1028" class="hand desc">• Đăng bán sản phẩm mới kèm upload nhiều ảnh</text>
+  <text x="60" y="1051" class="hand desc">• Cập nhật giá, kiểm soát số lượng tồn kho</text>
+  <text x="60" y="1074" class="hand desc">• Phân quyền User / Admin &amp; xử lý trạng thái đơn</text>
+
+
+  <!-- [5] SECTION: MULTER & LOCAL DISK STORAGE (Bottom-Center) -->
+  <rect x="465" y="745" width="460" height="395" rx="18" ry="18" fill="#FFF7ED" stroke="#F97316" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="485" y="758" width="420" height="36" rx="8" fill="#FED7AA"/>
+  <text x="695" y="782" text-anchor="middle" class="hand col-title" fill="#C2410C">📁 Local Disk Storage</text>
+
+  <rect x="485" y="810" width="420" height="310" rx="14" ry="14" fill="#FFFFFF" stroke="#FDBA74" stroke-width="2"/>
+  <rect x="500" y="825" width="180" height="24" rx="6" fill="#F97316"/>
+  <text x="590" y="841" text-anchor="middle" class="hand badge" fill="#FFFFFF">MULTER DISK STORAGE</text>
+  <text x="500" y="875" class="hand card-title">Thư Mục: backend/uploads/</text>
+  <line x1="500" y1="888" x2="890" y2="888" stroke="#FED7AA" stroke-width="1.5"/>
+  <text x="500" y="915" class="hand desc">• Nơi lưu ảnh do Admin upload khi thêm/sửa sản phẩm</text>
+  <text x="500" y="940" class="hand desc">• Tên file sinh ngẫu nhiên kèm timestamp:</text>
+  <text x="520" y="962" class="hand detail" fill="#C2410C">1747112299993-334070225.webp</text>
+  <text x="500" y="990" class="hand desc">• Phục vụ trực tiếp qua Express Static Route:</text>
+  <text x="520" y="1012" class="hand detail" fill="#0284C7">http://localhost:8080/uploads/&lt;filename&gt;</text>
+  <text x="500" y="1040" class="hand desc">• Hoàn toàn độc lập, lưu trữ trực tiếp trên đĩa cứng</text>
+  <text x="500" y="1075" class="hand detail" fill="#9A3412">💡 Chiến lược 2 nguồn ảnh: Catalog mẫu (Cloudinary) + Ảnh mới (Local)</text>
+
+
+  <!-- [6] SECTION: MONGODB DATABASE (Bottom-Right) -->
+  <rect x="960" y="745" width="1085" height="395" rx="18" ry="18" fill="#F0FDF4" stroke="#0D9488" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="980" y="758" width="1045" height="36" rx="8" fill="#CCFBF1"/>
+  <text x="1502" y="782" text-anchor="middle" class="hand col-title" fill="#0F766E">💾 Database Layer (MongoDB 8.2 &amp; Mongoose ODM)</text>
+
+  <!-- 6.1 Database Info & Connection -->
+  <rect x="980" y="810" width="365" height="310" rx="14" ry="14" fill="#FFFFFF" stroke="#5EEAD4" stroke-width="2"/>
+  <rect x="995" y="825" width="180" height="24" rx="6" fill="#0D9488"/>
+  <text x="1085" y="841" text-anchor="middle" class="hand badge" fill="#FFFFFF">NOSQL PERSISTENCE</text>
+  <text x="995" y="875" class="hand card-title">MongoDB Service</text>
+  <line x1="995" y1="888" x2="1330" y2="888" stroke="#99F6E4" stroke-width="1.5"/>
+  <text x="995" y="915" class="hand desc">• <tspan font-weight="700">Docker Container:</tspan> mongo-banhang</text>
+  <text x="995" y="940" class="hand desc">• <tspan font-weight="700">Image:</tspan> mongo:8.2 (Cổng 27017)</text>
+  <text x="995" y="965" class="hand desc">• <tspan font-weight="700">Database Name:</tspan> Kan-ban-hang</text>
+  <text x="995" y="990" class="hand desc">• <tspan font-weight="700">Mongoose ODM:</tspan> v8.12 (Strict Schema)</text>
+  <text x="995" y="1020" class="hand desc">• <tspan font-weight="700">Dump Data:</tspan> data/Kan-ban-hang/</text>
+  <text x="995" y="1045" class="hand desc">• Script phục hồi: <tspan font-weight="700" fill="#0F766E">./restore_data.sh</tspan></text>
+  <text x="995" y="1080" class="hand detail" fill="#0D9488">✓ Hỗ trợ cả Local DB lẫn MongoDB Atlas</text>
+
+  <!-- 6.2 Collections Detail -->
+  <rect x="1365" y="810" width="660" height="310" rx="14" ry="14" fill="#FFFFFF" stroke="#5EEAD4" stroke-width="2"/>
+  <text x="1385" y="845" class="hand card-title" fill="#0F766E">📊 Collections &amp; Schema Fields:</text>
+  <line x1="1385" y1="858" x2="2005" y2="858" stroke="#99F6E4" stroke-width="1.5"/>
+
+  <text x="1385" y="885" class="hand desc">• <tspan font-weight="700">products (147 items):</tspan> productName, brandName, category, price, sellingPrice,</text>
+  <text x="1405" y="905" class="hand detail"><tspan font-weight="700" fill="#BE123C">countInStock</tspan> (quản lý tồn kho), <tspan font-weight="700" fill="#BE123C">sales</tspan> (lượt đã bán), productImage[]</text>
+
+  <text x="1385" y="935" class="hand desc">• <tspan font-weight="700">users (3 accounts):</tspan> name, email, password (bcrypt), role (Admin/General),</text>
+  <text x="1405" y="955" class="hand detail">profilePic (base64), resetPasswordCode, resetPasswordExpires</text>
+
+  <text x="1385" y="985" class="hand desc">• <tspan font-weight="700">orders (Customer orders):</tspan> productDetails[], email, name, userId, totalAmount,</text>
+  <text x="1405" y="1005" class="hand detail">paymentDetails (paymentId, status), <tspan font-weight="700" fill="#0F766E">status (Pending, Processing, Delivered, Cancelled, Refunded)</tspan></text>
+
+  <text x="1385" y="1035" class="hand desc">• <tspan font-weight="700">addtocarts:</tspan> userId, productId, quantity</text>
+  <text x="1385" y="1065" class="hand desc">• <tspan font-weight="700">reviews (8 reviews):</tspan> userId, productId, review, rating</text>
+  <text x="1385" y="1095" class="hand detail" fill="#047857">✓ Đảm bảo toàn vẹn dữ liệu cho toàn bộ nghiệp vụ E-Commerce</text>
+
+
+  <!-- ==================== FLOW ARROWS & LABELS ==================== -->
+
+  <!-- [Arrow 1] Customer App -> Express API -->
+  <path d="M 405 250 L 485 250" fill="none" stroke="#0284C7" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <rect x="415" y="228" width="60" height="20" rx="4" fill="#FFFFFF" stroke="#BAE6FD" stroke-width="1"/>
+  <text x="445" y="242" text-anchor="middle" class="hand edge-label" fill="#0284C7">REST</text>
+
+  <!-- [Arrow 2] Admin Dashboard -> Express API -->
+  <path d="M 405 540 L 445 540 L 445 330 L 485 330" fill="none" stroke="#16A34A" stroke-width="3" marker-end="url(#arrow-green)"/>
+  <rect x="410" y="420" width="70" height="20" rx="4" fill="#FFFFFF" stroke="#BBF7D0" stroke-width="1"/>
+  <text x="445" y="434" text-anchor="middle" class="hand edge-label" fill="#16A34A">Admin API</text>
+
+  <!-- [Arrow 3] Customer App -> Cloudinary CDN (Clearance path) -->
+  <path d="M 230 165 C 230 80, 1800 80, 1800 165" fill="none" stroke="#0284C7" stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arrow-blue)"/>
+  <rect x="920" y="68" width="240" height="24" rx="6" fill="#0284C7"/>
+  <text x="1040" y="84" text-anchor="middle" class="hand badge" fill="#FFFFFF">Direct Catalog Stream (611 photos)</text>
+
+  <!-- [Arrow 4] Controllers -> Stripe (Create Checkout Session) -->
+  <path d="M 1415 310 L 1590 380" fill="none" stroke="#4F46E5" stroke-width="3" marker-end="url(#arrow-indigo)"/>
+  <rect x="1455" y="325" width="110" height="20" rx="4" fill="#FFFFFF" stroke="#C7D2FE" stroke-width="1"/>
+  <text x="1510" y="339" text-anchor="middle" class="hand edge-label" fill="#4F46E5">Create Session</text>
+
+  <!-- [Arrow 5] Stripe -> Backend (Webhook Event) -->
+  <path d="M 1590 440 L 1415 440" fill="none" stroke="#4F46E5" stroke-width="3" marker-end="url(#arrow-indigo)"/>
+  <rect x="1455" y="428" width="110" height="20" rx="4" fill="#FFFFFF" stroke="#C7D2FE" stroke-width="1"/>
+  <text x="1510" y="442" text-anchor="middle" class="hand edge-label" fill="#4F46E5">Stripe Webhook</text>
+
+  <!-- [Arrow 6] Race Condition Guard -> Stripe Auto-Refund -->
+  <path d="M 1415 500 L 1590 500" fill="none" stroke="#E11D48" stroke-width="3" stroke-dasharray="6,4" marker-end="url(#arrow-red)"/>
+  <rect x="1455" y="488" width="110" height="20" rx="4" fill="#FFFFFF" stroke="#FECDD3" stroke-width="1"/>
+  <text x="1510" y="502" text-anchor="middle" class="hand edge-label" fill="#E11D48">Auto-Refund</text>
+
+  <!-- [Arrow 7] Controllers -> Google SMTP -->
+  <path d="M 1415 360 L 1490 360 L 1490 620 L 1590 620" fill="none" stroke="#DB2777" stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arrow-red)"/>
+  <rect x="1455" y="575" width="80" height="20" rx="4" fill="#FFFFFF" stroke="#FBCFE8" stroke-width="1"/>
+  <text x="1495" y="589" text-anchor="middle" class="hand edge-label" fill="#DB2777">Send OTP</text>
+
+  <!-- [Arrow 8] Backend -> Local Storage (Multer Write) -->
+  <path d="M 695 715 L 695 745" fill="none" stroke="#F97316" stroke-width="3" marker-end="url(#arrow-orange)"/>
+  <rect x="630" y="720" width="130" height="20" rx="4" fill="#FFFFFF" stroke="#FED7AA" stroke-width="1"/>
+  <text x="695" y="734" text-anchor="middle" class="hand edge-label" fill="#EA580C">Multer Disk Write</text>
+
+  <!-- [Arrow 9] Backend -> MongoDB (Atomic Queries & Updates) -->
+  <path d="M 1160 715 L 1160 745" fill="none" stroke="#0D9488" stroke-width="3.5" marker-end="url(#arrow-teal)"/>
+  <rect x="1065" y="720" width="190" height="20" rx="4" fill="#FFFFFF" stroke="#99F6E4" stroke-width="1"/>
+  <text x="1160" y="734" text-anchor="middle" class="hand edge-label" fill="#0D9488">Atomic $gte Queries &amp; Updates</text>
+
+</svg>"""
+
+with open("docs/architecture_diagram.svg", "w", encoding="utf-8") as f:
+    f.write(svg_content)
+
+print("SVG written to docs/architecture_diagram.svg")
+
+# Render to high-res PNG then convert to JPG
+res = subprocess.run([
+    "rsvg-convert",
+    "-f", "png",
+    "-w", "2080",
+    "-h", "1200",
+    "docs/architecture_diagram.svg",
+    "-o", "docs/architecture_diagram.png"
+], capture_output=True, text=True)
+
+if res.returncode != 0:
+    print("rsvg error:", res.stderr)
+else:
+    print("PNG rendered successfully")
+
+# Convert PNG to high quality JPG
+res2 = subprocess.run([
+    "magick",
+    "docs/architecture_diagram.png",
+    "-quality", "95",
+    "docs/architecture_diagram.jpg"
+], capture_output=True, text=True)
+
+if res2.returncode != 0:
+    print("magick error:", res2.stderr)
+else:
+    print("JPG converted successfully to docs/architecture_diagram.jpg")

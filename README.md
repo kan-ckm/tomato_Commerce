@@ -6,23 +6,25 @@ Hệ thống thương mại điện tử hiện đại kiến trúc Fullstack Mo
 
 ## 📐 Sơ Đồ Kiến Trúc Hệ Thống (System Architecture)
 
-Sơ đồ phác thảo kiến trúc luồng dữ liệu và các thành phần chính trong hệ thống (lưu trữ hình ảnh 100% nội bộ trên server qua Multer):
+Sơ đồ phác thảo kiến trúc luồng dữ liệu, bảo vệ tồn kho (Concurrency Guard) và các dịch vụ đám mây tích hợp trong hệ thống:
 
 ![Tomato Store System Architecture](./docs/architecture_diagram.jpg)
 
 ### Luồng Hoạt Động Chính:
 1. **Client Tier**: 
-   - **Customer Web App (React 18)**: Dành cho người mua sắm duyệt sản phẩm, quản lý giỏ hàng và thanh toán.
-   - **Admin Dashboard (Vite + React)**: Dành cho ban quản trị theo dõi chỉ số kinh doanh, upload quản lý sản phẩm, đơn hàng và phân quyền.
+   - **Customer Web App (React 18)**: Dành cho người mua sắm duyệt sản phẩm, quản lý giỏ hàng, thanh toán Stripe và streaming ảnh catalog trực tiếp từ Cloudinary CDN.
+   - **Admin Dashboard (Vite + React)**: Dành cho ban quản trị theo dõi biểu đồ doanh thu, upload ảnh lưu cục bộ trên server, quản lý đơn hàng và phân quyền.
 2. **Backend Tier (Node.js & Express REST API)**:
    - Xử lý xác thực người dùng bằng JSON Web Token (JWT) lưu trữ an toàn trong HTTP-only cookies.
-   - Xử lý và lưu trữ file ảnh trực tiếp trên ổ đĩa server thông qua **Multer DiskStorage** (`/uploads/`).
-   - Xử lý thanh toán thẻ quốc tế qua Stripe API và Stripe Webhooks tự động cập nhật trạng thái đơn hàng.
+   - **Race Condition & Concurrency Guard**: Trừ tồn kho nguyên tử (`$gte`), chống overselling, idempotency webhook và tự động rollback / auto-refund qua Stripe khi hết hàng.
+   - Xử lý và lưu trữ file ảnh do admin tải lên trực tiếp trên ổ đĩa server qua **Multer DiskStorage** (`/uploads/`).
+   - Xử lý phiên thanh toán thẻ quốc tế qua Stripe Checkout và Stripe Webhooks tự động.
    - Gửi mã xác thực OTP khôi phục mật khẩu qua giao thức SMTP (Nodemailer).
-3. **Data & Services**:
-   - **MongoDB**: Cơ sở dữ liệu NoSQL lưu trữ Users, Products, Carts, Orders, Reviews.
-   - **Local Server Storage (`/uploads/`)**: Lưu trữ và phân phối ảnh sản phẩm nội bộ máy chủ, không phụ thuộc dịch vụ bên thứ ba.
-   - **Stripe**: Cổng thanh toán trực tuyến quốc tế.
+3. **Data & Cloud Services**:
+   - **MongoDB 8.2**: Cơ sở dữ liệu NoSQL lưu trữ Products, Users, Orders, Carts, Reviews.
+   - **Local Disk Storage (`/uploads/`)**: Lưu trữ và phân phối ảnh sản phẩm mới tải lên từ Admin.
+   - **Cloudinary CDN (`res.cloudinary.com`)**: Lưu trữ và phân phối tốc độ cao 100% hình ảnh danh mục sản phẩm mẫu (611 ảnh WebP).
+   - **Stripe**: Cổng thanh toán trực tuyến quốc tế và cơ chế hoàn tiền tự động.
    - **Google SMTP**: Dịch vụ email thông báo và mã kích hoạt OTP.
 
 ---
