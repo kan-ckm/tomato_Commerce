@@ -7,7 +7,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node tests/test_concurrency.js",
     "start": "nodemon index.js",
     "dev": "nodemon index.js"
   },
@@ -27,5 +27,8 @@
     "rimraf": "^6.0.1",
     "stripe": "^18.0.0",
     "swiper": "^11.2.6"
+  },
+  "allowScripts": {
+    "bcrypt@5.1.1": true
   }
 }
