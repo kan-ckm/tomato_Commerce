@@ -32,30 +32,30 @@ const orderSchema = new mongoose.Schema({
         }
     },
     shipping_options: [{
-        shipping_rate: { type: String, required: true },
-        shipping_amount: { type: Number, required: true }  
+        shipping_rate: { type: String, default: '' },
+        shipping_amount: { type: Number, default: 0 }  
     }],
     totalAmount: {
         type: Number,
         required: true
     },
     status: {
-    type: String,
-    enum: ['Pending', 'Processing', 'Shipped', 'Delivered'],
-    default: 'Pending'
-},
+        type: String,
+        enum: ['Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled', 'Refunded'],
+        default: 'Pending'
+    },
     shipping_address: {
-        line1: { type: String, required: true },
-        line2: { type: String },
-        city: { type: String, required: true },
-        state: { type: String, required: true },
-        postal_code: { type: String, required: true },
-        country: { type: String, required: true }
+        line1: { type: String, default: '' },
+        line2: { type: String, default: '' },
+        city: { type: String, default: '' },
+        state: { type: String, default: '' },
+        postal_code: { type: String, default: '' },
+        country: { type: String, default: '' }
     },
 
     customer_phone: {
         type: String,
-        required: true
+        default: ''
     }
 }, {
     timestamps: true

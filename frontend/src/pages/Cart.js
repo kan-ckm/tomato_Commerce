@@ -120,6 +120,8 @@ const Cart = () => {
         const responseData = await res.json() 
         if(responseData?.id){
             stripePromise.redirectToCheckout({sessionId:responseData.id})
+        } else if (responseData?.message) {
+            toast.error(responseData.message)
         }
  
     }

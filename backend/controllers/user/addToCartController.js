@@ -1,8 +1,18 @@
 const addToCartModel = require("../../models/cartProductModel");
+const productModel = require("../../models/productModel");
+
 const addToCartController = async (req, res) => {
     try{
         const {productId} = req?.body;
         const currentuserId = req?.userId;
+
+        const product = await productModel.findById(productId);
+        if (!product) {
+            throw new Error("Sản phẩm không tồn tại");
+        }
+        if (product.countInStock <= 0) {
+            throw new Error("Sản phẩm đã hết hàng");
+        }
 
         const isProductAvailable = await addToCartModel.findOne({ productId: productId, userId: currentuserId,});
         if(isProductAvailable){
