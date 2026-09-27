@@ -1,3 +1,6 @@
+const fs = require('fs');
+const { uploadToCloudinary } = require('../../helpers/uploadCloudinary');
+
 async function uploadImageController(req, res) {
     try {
         if (!req.file) {
@@ -8,15 +11,20 @@ async function uploadImageController(req, res) {
             });
         }
 
-        const backendURL = process.env.BACKEND_URL || "http://localhost:8080";
-        const imageUrl = `${backendURL}/uploads/${req.file.filename}`;
+        let buffer = req.file.buffer;
+        if (!buffer && req.file.path) {
+            buffer = fs.readFileSync(req.file.path);
+            try { fs.unlinkSync(req.file.path); } catch (e) {}
+        }
+
+        const secureUrl = await uploadToCloudinary(buffer, req.file.originalname, 'Kanproduct');
 
         res.status(200).json({
-            message: "Image uploaded successfully",
+            message: "Image uploaded successfully to Cloudinary",
             error: false,
             success: true,
-            url: imageUrl,
-            data: { url: imageUrl }
+            url: secureUrl,
+            data: { url: secureUrl }
         });
     } catch (err) {
         res.status(400).json({

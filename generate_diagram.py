@@ -50,7 +50,7 @@ svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2080 1200"
 
   <!-- ==================== HEADER ==================== -->
   <text x="1040" y="38" text-anchor="middle" class="hand title" font-size="30">Tomato Store - System Architecture</text>
-  <text x="1040" y="62" text-anchor="middle" class="hand subtitle" font-size="14.5">Fullstack Monorepo Architecture • React 18 &amp; Vite Admin • Node.js/Express REST API • MongoDB 8.2 • Cloudinary CDN &amp; Stripe Payment</text>
+  <text x="1040" y="62" text-anchor="middle" class="hand subtitle" font-size="14.5">Fullstack Monorepo Architecture • React 18 &amp; Vite Admin • Node.js/Express REST API • MongoDB 8.2 • 100% Cloudinary Media &amp; Stripe Payment</text>
 
   <!-- ==================== TOP ROW ==================== -->
 
@@ -71,7 +71,7 @@ svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2080 1200"
   <text x="70" y="322" class="hand desc">• Stripe Checkout SDK (@stripe/stripe-js)</text>
   <text x="70" y="344" class="hand desc">• Multi-Language Support (i18next)</text>
   <text x="70" y="366" class="hand desc">• User Orders, Profile &amp; Product Reviews</text>
-  <text x="70" y="396" class="hand detail" fill="#0369A1">⚡ Streams catalog photos directly from Cloudinary</text>
+  <text x="70" y="396" class="hand detail" fill="#0369A1">⚡ Streams 100% catalog photos directly from Cloudinary</text>
 
   <!-- 1.2 Admin Dashboard -->
   <rect x="55" y="440" width="350" height="255" rx="14" ry="14" fill="#DCFCE7" stroke="#16A34A" stroke-width="2.5" filter="url(#shadow)"/>
@@ -82,7 +82,7 @@ svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2080 1200"
   <line x1="70" y1="530" x2="390" y2="530" stroke="#BBF7D0" stroke-width="1.5"/>
   <text x="70" y="552" class="hand desc">• Sales Analytics, Heatmaps &amp; Revenue Trends</text>
   <text x="70" y="574" class="hand desc">• Product Management (CRUD &amp; Inventory)</text>
-  <text x="70" y="596" class="hand desc">• Multi-Image Upload (Multer /uploads/)</text>
+  <text x="70" y="596" class="hand desc">• Multi-Image Upload (Cloud Stream to Cloudinary)</text>
   <text x="70" y="618" class="hand desc">• User Role Administration (Admin / User)</text>
   <text x="70" y="640" class="hand desc">• Order Processing &amp; Daily Stats Tracking</text>
   <text x="70" y="672" class="hand detail" fill="#15803D">🔒 Protected via adminAuth middleware</text>
@@ -103,8 +103,8 @@ svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2080 1200"
   <text x="500" y="280" class="hand desc">• Role Guard Middleware (adminAuth)</text>
   <text x="500" y="302" class="hand desc">• CORS Origin: localhost:3000 &amp; :5173</text>
   <text x="500" y="324" class="hand desc">• Raw Stripe Webhook Body Parser</text>
-  <text x="500" y="346" class="hand desc">• Static Asset Dispatcher: app.use('/uploads', ...)</text>
-  <text x="500" y="374" class="hand detail" fill="#C2410C">✓ Fixed case-sensitive paymentController route</text>
+  <text x="500" y="346" class="hand desc">• Multer MemoryStorage: In-Memory File Buffer Stream</text>
+  <text x="500" y="374" class="hand detail" fill="#C2410C">✓ Không ghi file rác lên ổ đĩa máy chủ</text>
 
   <!-- 2.2 Controllers -->
   <rect x="950" y="165" width="465" height="225" rx="14" ry="14" fill="#F3E8FF" stroke="#9333EA" stroke-width="2" filter="url(#shadow)"/>
@@ -112,12 +112,12 @@ svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2080 1200"
   <text x="1040" y="193" text-anchor="middle" class="hand badge" fill="#FFFFFF">BUSINESS LOGIC</text>
   <text x="965" y="225" class="hand card-title">Application Controllers</text>
   <line x1="965" y1="235" x2="1400" y2="235" stroke="#E9D5FF" stroke-width="1.5"/>
-  <text x="965" y="258" class="hand desc">• <tspan font-weight="700">Product:</tspan> Catalog, CategoryWise, Filters</text>
+  <text x="965" y="258" class="hand desc">• <tspan font-weight="700">Product:</tspan> Catalog, CategoryWise, Parallel Cloud Upload</text>
   <text x="965" y="280" class="hand desc">• <tspan font-weight="700">Cart:</tspan> Stock-checked Add, Qty Update</text>
   <text x="965" y="302" class="hand desc">• <tspan font-weight="700">Payment:</tspan> Pre-checkout Inventory Validation</text>
   <text x="965" y="324" class="hand desc">• <tspan font-weight="700">Order:</tspan> Order Lists, Details &amp; Admin Ops</text>
   <text x="965" y="346" class="hand desc">• <tspan font-weight="700">User &amp; Admin:</tspan> Auth, Profile, OTP Reset</text>
-  <text x="965" y="374" class="hand detail" fill="#7E22CE">⚡ Dispatches queries to Mongoose &amp; external APIs</text>
+  <text x="965" y="374" class="hand detail" fill="#7E22CE">⚡ Tích hợp uploadToCloudinary đa tầng (Signed/Unsigned)</text>
 
   <!-- 2.3 Race Condition Guard (Full Width of Backend) -->
   <rect x="485" y="410" width="930" height="285" rx="14" ry="14" fill="#FFE4E6" stroke="#E11D48" stroke-width="3" filter="url(#shadow)"/>
@@ -147,7 +147,7 @@ svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2080 1200"
   <text x="980" y="624" class="hand detail">Saved as 'Cancelled'/'Refunded' with note in OrderModel</text>
 
   <rect x="505" y="648" width="890" height="28" rx="6" fill="#FEE2E2"/>
-  <text x="950" y="667" text-anchor="middle" class="hand badge" fill="#991B1B">✓ 100% PASS trên bộ test đồng thời (npm test) - Đảm bảo không bán khống khi 2 người cùng mua món cuối</text>
+  <text x="950" y="667" text-anchor="middle" class="hand badge" fill="#991B1B">✓ 100% PASS trên bộ test đồng thời &amp; media cloud (npm test: 9/9 tests pass)</text>
 
 
   <!-- [3] SECTION: EXTERNAL CLOUD SERVICES (Top-Right) -->
@@ -162,8 +162,8 @@ svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2080 1200"
   <text x="1605" y="225" class="hand card-title">Cloudinary Media CDN</text>
   <text x="1605" y="245" class="hand detail" font-weight="700">res.cloudinary.com/ddjvcv8gf/</text>
   <line x1="1605" y1="255" x2="2010" y2="255" stroke="#BAE6FD" stroke-width="1.5"/>
-  <text x="1605" y="278" class="hand desc">• <tspan font-weight="700" fill="#0369A1">Host của 100% ảnh catalog mẫu (611 ảnh WebP)</tspan></text>
-  <text x="1605" y="300" class="hand desc">• Trình duyệt khách hàng tải ảnh trực tiếp qua CDN Edge</text>
+  <text x="1605" y="278" class="hand desc">• <tspan font-weight="700" fill="#0369A1">Host 100% media: Catalog mẫu + Toàn bộ ảnh mới</tspan></text>
+  <text x="1605" y="300" class="hand desc">• Memory buffer stream trực tiếp, zero server disk I/O</text>
 
   <!-- 3.2 Stripe -->
   <rect x="1590" y="340" width="435" height="205" rx="14" ry="14" fill="#EDE9FE" stroke="#4F46E5" stroke-width="2" filter="url(#shadow)"/>
@@ -197,34 +197,34 @@ svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2080 1200"
   <text x="60" y="850" class="hand desc">• Duyệt 147 sản phẩm theo danh mục &amp; lọc giá</text>
   <text x="60" y="873" class="hand desc">• Quản lý giỏ hàng, cập nhật số lượng</text>
   <text x="60" y="896" class="hand desc">• Thanh toán quốc tế qua cổng Stripe Checkout</text>
-  <text x="60" y="919" class="hand desc">• Theo dõi đơn hàng &amp; đánh giá nhận xét sản phẩm</text>
+  <text x="60" y="919" class="hand desc">• Tải ảnh trực tiếp từ Cloudinary CDN Edge cực nhanh</text>
 
   <line x1="60" y1="945" x2="405" y2="945" stroke="#FCD34D" stroke-width="2"/>
 
   <text x="60" y="980" class="hand card-title" fill="#B45309">👑 Administrator:</text>
   <text x="60" y="1005" class="hand desc">• Theo dõi dashboard biểu đồ doanh thu &amp; đơn hàng</text>
-  <text x="60" y="1028" class="hand desc">• Đăng bán sản phẩm mới kèm upload nhiều ảnh</text>
-  <text x="60" y="1051" class="hand desc">• Cập nhật giá, kiểm soát số lượng tồn kho</text>
+  <text x="60" y="1028" class="hand desc">• Đăng bán sản phẩm mới kèm upload song song ảnh</text>
+  <text x="60" y="1051" class="hand desc">• Tự động đẩy ảnh lên Cloudinary thư mục Kanproduct</text>
   <text x="60" y="1074" class="hand desc">• Phân quyền User / Admin &amp; xử lý trạng thái đơn</text>
 
 
-  <!-- [5] SECTION: MULTER & LOCAL DISK STORAGE (Bottom-Center) -->
-  <rect x="465" y="745" width="460" height="395" rx="18" ry="18" fill="#FFF7ED" stroke="#F97316" stroke-width="2.5" filter="url(#shadow)"/>
-  <rect x="485" y="758" width="420" height="36" rx="8" fill="#FED7AA"/>
-  <text x="695" y="782" text-anchor="middle" class="hand col-title" fill="#C2410C">📁 Local Disk Storage</text>
+  <!-- [5] SECTION: CLOUD MEDIA PIPELINE (Bottom-Center) -->
+  <rect x="465" y="745" width="460" height="395" rx="18" ry="18" fill="#F0F9FF" stroke="#0284C7" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="485" y="758" width="420" height="36" rx="8" fill="#BAE6FD"/>
+  <text x="695" y="782" text-anchor="middle" class="hand col-title" fill="#0369A1">☁️ Cloud Media Pipeline</text>
 
-  <rect x="485" y="810" width="420" height="310" rx="14" ry="14" fill="#FFFFFF" stroke="#FDBA74" stroke-width="2"/>
-  <rect x="500" y="825" width="180" height="24" rx="6" fill="#F97316"/>
-  <text x="590" y="841" text-anchor="middle" class="hand badge" fill="#FFFFFF">MULTER DISK STORAGE</text>
-  <text x="500" y="875" class="hand card-title">Thư Mục: backend/uploads/</text>
-  <line x1="500" y1="888" x2="890" y2="888" stroke="#FED7AA" stroke-width="1.5"/>
-  <text x="500" y="915" class="hand desc">• Nơi lưu ảnh do Admin upload khi thêm/sửa sản phẩm</text>
-  <text x="500" y="940" class="hand desc">• Tên file sinh ngẫu nhiên kèm timestamp:</text>
-  <text x="520" y="962" class="hand detail" fill="#C2410C">1747112299993-334070225.webp</text>
-  <text x="500" y="990" class="hand desc">• Phục vụ trực tiếp qua Express Static Route:</text>
-  <text x="520" y="1012" class="hand detail" fill="#0284C7">http://localhost:8080/uploads/&lt;filename&gt;</text>
-  <text x="500" y="1040" class="hand desc">• Hoàn toàn độc lập, lưu trữ trực tiếp trên đĩa cứng</text>
-  <text x="500" y="1075" class="hand detail" fill="#9A3412">💡 Chiến lược 2 nguồn ảnh: Catalog mẫu (Cloudinary) + Ảnh mới (Local)</text>
+  <rect x="485" y="810" width="420" height="310" rx="14" ry="14" fill="#FFFFFF" stroke="#7DD3FC" stroke-width="2"/>
+  <rect x="500" y="825" width="200" height="24" rx="6" fill="#0284C7"/>
+  <text x="600" y="841" text-anchor="middle" class="hand badge" fill="#FFFFFF">100% CLOUD STORAGE</text>
+  <text x="500" y="875" class="hand card-title">Cloudinary Buffer Stream</text>
+  <line x1="500" y1="888" x2="890" y2="888" stroke="#BAE6FD" stroke-width="1.5"/>
+  <text x="500" y="915" class="hand desc">• <tspan font-weight="700">Multer MemoryStorage:</tspan> Giữ buffer trong RAM</text>
+  <text x="500" y="940" class="hand desc">• <tspan font-weight="700">Zero Server Disk I/O:</tspan> Không tốn ổ đĩa máy chủ</text>
+  <text x="500" y="965" class="hand desc">• <tspan font-weight="700">Parallel Upload:</tspan> Upload song song hàng loạt ảnh</text>
+  <text x="500" y="990" class="hand desc">• <tspan font-weight="700">Preset &amp; Folder:</tspan> Kan_product / folder Kanproduct</text>
+  <text x="500" y="1015" class="hand desc">• <tspan font-weight="700">Dual Mode:</tspan> Hỗ trợ cả Unsigned Preset &amp; Signed SDK</text>
+  <text x="500" y="1040" class="hand desc">• <tspan font-weight="700">Global CDN Delivery:</tspan> Tự động nén WebP trên CDN</text>
+  <text x="500" y="1075" class="hand detail" fill="#0284C7">✓ Đã đồng bộ 100% media toàn hệ thống lên Cloudinary</text>
 
 
   <!-- [6] SECTION: MONGODB DATABASE (Bottom-Right) -->
@@ -244,7 +244,7 @@ svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2080 1200"
   <text x="995" y="990" class="hand desc">• <tspan font-weight="700">Mongoose ODM:</tspan> v8.12 (Strict Schema)</text>
   <text x="995" y="1020" class="hand desc">• <tspan font-weight="700">Dump Data:</tspan> data/Kan-ban-hang/</text>
   <text x="995" y="1045" class="hand desc">• Script phục hồi: <tspan font-weight="700" fill="#0F766E">./restore_data.sh</tspan></text>
-  <text x="995" y="1080" class="hand detail" fill="#0D9488">✓ Hỗ trợ cả Local DB lẫn MongoDB Atlas</text>
+  <text x="995" y="1080" class="hand detail" fill="#0D9488">✓ Lưu trữ link Cloudinary HTTPS trong productImage</text>
 
   <!-- 6.2 Collections Detail -->
   <rect x="1365" y="810" width="660" height="310" rx="14" ry="14" fill="#FFFFFF" stroke="#5EEAD4" stroke-width="2"/>
@@ -252,7 +252,7 @@ svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2080 1200"
   <line x1="1385" y1="858" x2="2005" y2="858" stroke="#99F6E4" stroke-width="1.5"/>
 
   <text x="1385" y="885" class="hand desc">• <tspan font-weight="700">products (147 items):</tspan> productName, brandName, category, price, sellingPrice,</text>
-  <text x="1405" y="905" class="hand detail"><tspan font-weight="700" fill="#BE123C">countInStock</tspan> (quản lý tồn kho), <tspan font-weight="700" fill="#BE123C">sales</tspan> (lượt đã bán), productImage[]</text>
+  <text x="1405" y="905" class="hand detail"><tspan font-weight="700" fill="#BE123C">countInStock</tspan> (quản lý tồn kho), <tspan font-weight="700" fill="#BE123C">sales</tspan> (lượt đã bán), productImage[] (Cloudinary URLs)</text>
 
   <text x="1385" y="935" class="hand desc">• <tspan font-weight="700">users (3 accounts):</tspan> name, email, password (bcrypt), role (Admin/General),</text>
   <text x="1405" y="955" class="hand detail">profilePic (base64), resetPasswordCode, resetPasswordExpires</text>
@@ -280,7 +280,7 @@ svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2080 1200"
   <!-- [Arrow 3] Customer App -> Cloudinary CDN (Clearance path) -->
   <path d="M 230 165 C 230 80, 1800 80, 1800 165" fill="none" stroke="#0284C7" stroke-width="2.5" stroke-dasharray="6,4" marker-end="url(#arrow-blue)"/>
   <rect x="920" y="68" width="240" height="24" rx="6" fill="#0284C7"/>
-  <text x="1040" y="84" text-anchor="middle" class="hand badge" fill="#FFFFFF">Direct Catalog Stream (611 photos)</text>
+  <text x="1040" y="84" text-anchor="middle" class="hand badge" fill="#FFFFFF">Direct CDN Edge Delivery</text>
 
   <!-- [Arrow 4] Controllers -> Stripe (Create Checkout Session) -->
   <path d="M 1415 310 L 1590 380" fill="none" stroke="#4F46E5" stroke-width="3" marker-end="url(#arrow-indigo)"/>
@@ -302,10 +302,10 @@ svg_content = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2080 1200"
   <rect x="1455" y="575" width="80" height="20" rx="4" fill="#FFFFFF" stroke="#FBCFE8" stroke-width="1"/>
   <text x="1495" y="589" text-anchor="middle" class="hand edge-label" fill="#DB2777">Send OTP</text>
 
-  <!-- [Arrow 8] Backend -> Local Storage (Multer Write) -->
-  <path d="M 695 715 L 695 745" fill="none" stroke="#F97316" stroke-width="3" marker-end="url(#arrow-orange)"/>
-  <rect x="630" y="720" width="130" height="20" rx="4" fill="#FFFFFF" stroke="#FED7AA" stroke-width="1"/>
-  <text x="695" y="734" text-anchor="middle" class="hand edge-label" fill="#EA580C">Multer Disk Write</text>
+  <!-- [Arrow 8] Backend -> Cloud Media Pipeline (Memory Stream) -->
+  <path d="M 695 715 L 695 745" fill="none" stroke="#0284C7" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <rect x="615" y="720" width="160" height="20" rx="4" fill="#FFFFFF" stroke="#BAE6FD" stroke-width="1"/>
+  <text x="695" y="734" text-anchor="middle" class="hand edge-label" fill="#0284C7">Memory Buffer Stream</text>
 
   <!-- [Arrow 9] Backend -> MongoDB (Atomic Queries & Updates) -->
   <path d="M 1160 715 L 1160 745" fill="none" stroke="#0D9488" stroke-width="3.5" marker-end="url(#arrow-teal)"/>

@@ -1,29 +1,28 @@
-# 🍅 Tomato Store - Nền Tảng Thương Mại Điện Tử & Quản Trị(Fullstack E-Commerce)
+# 🍅 Tomato Store - Nền Tảng Thương Mại Điện Tử & Quản Trị (Fullstack E-Commerce)
 
-Hệ thống thương mại điện tử hiện đại kiến trúc Fullstack Monorepo, tích hợp cổng thanh toán trực tuyến quốc tế Stripe, lưu trữ hình ảnh nội bộ server (Local Disk Storage via Multer), xác thực bảo mật JWT qua Cookie, đa ngôn ngữ (i18n) cùng bảng điều khiển phân tích số liệu quản trị (Admin Analytics Dashboard) chuyên sâu.
+Hệ thống thương mại điện tử hiện đại kiến trúc Fullstack Monorepo, tích hợp cổng thanh toán trực tuyến quốc tế Stripe, lưu trữ và phân phối hình ảnh 100% trên Cloudinary CDN (tối ưu hóa qua Multer MemoryStorage buffer stream, không tốn ổ đĩa máy chủ), xác thực bảo mật JWT qua Cookie, đa ngôn ngữ (i18n) cùng bảng điều khiển phân tích số liệu quản trị (Admin Analytics Dashboard) chuyên sâu.
 
 ---
 
 ## 📐 Sơ Đồ Kiến Trúc Hệ Thống (System Architecture)
 
-Sơ đồ phác thảo kiến trúc luồng dữ liệu, bảo vệ tồn kho (Concurrency Guard) và các dịch vụ đám mây tích hợp trong hệ thống:
+Sơ đồ phác thảo kiến trúc luồng dữ liệu, bảo vệ tồn kho (Concurrency Guard) và toàn bộ hạ tầng đám mây tích hợp trong hệ thống:
 
 ![Tomato Store System Architecture](./docs/architecture_diagram.jpg)
 
 ### Luồng Hoạt Động Chính:
 1. **Client Tier**: 
-   - **Customer Web App (React 18)**: Dành cho người mua sắm duyệt sản phẩm, quản lý giỏ hàng, thanh toán Stripe và streaming ảnh catalog trực tiếp từ Cloudinary CDN.
-   - **Admin Dashboard (Vite + React)**: Dành cho ban quản trị theo dõi biểu đồ doanh thu, upload ảnh lưu cục bộ trên server, quản lý đơn hàng và phân quyền.
+   - **Customer Web App (React 18)**: Dành cho người mua sắm duyệt sản phẩm, quản lý giỏ hàng, thanh toán Stripe và tải 100% ảnh catalog trực tiếp từ Cloudinary CDN Edge.
+   - **Admin Dashboard (Vite + React)**: Dành cho ban quản trị theo dõi biểu đồ doanh thu, upload ảnh tải lên Cloudinary theo hàng loạt, quản lý đơn hàng và phân quyền.
 2. **Backend Tier (Node.js & Express REST API)**:
    - Xử lý xác thực người dùng bằng JSON Web Token (JWT) lưu trữ an toàn trong HTTP-only cookies.
    - **Race Condition & Concurrency Guard**: Trừ tồn kho nguyên tử (`$gte`), chống overselling, idempotency webhook và tự động rollback / auto-refund qua Stripe khi hết hàng.
-   - Xử lý và lưu trữ file ảnh do admin tải lên trực tiếp trên ổ đĩa server qua **Multer DiskStorage** (`/uploads/`).
+   - **Cloud Media Pipeline**: Nhận file qua **Multer MemoryStorage**, giữ buffer trong RAM và stream trực tiếp lên Cloudinary (`Kanproduct/`), không ghi file rác lên ổ cứng máy chủ.
    - Xử lý phiên thanh toán thẻ quốc tế qua Stripe Checkout và Stripe Webhooks tự động.
    - Gửi mã xác thực OTP khôi phục mật khẩu qua giao thức SMTP (Nodemailer).
 3. **Data & Cloud Services**:
    - **MongoDB 8.2**: Cơ sở dữ liệu NoSQL lưu trữ Products, Users, Orders, Carts, Reviews.
-   - **Local Disk Storage (`/uploads/`)**: Lưu trữ và phân phối ảnh sản phẩm mới tải lên từ Admin.
-   - **Cloudinary CDN (`res.cloudinary.com`)**: Lưu trữ và phân phối tốc độ cao 100% hình ảnh danh mục sản phẩm mẫu (611 ảnh WebP).
+   - **Cloudinary CDN (`res.cloudinary.com`)**: Lưu trữ và phân phối tập trung 100% media của hệ thống (Catalog mẫu + Toàn bộ ảnh mới do Admin upload), hỗ trợ auto WebP format và CDN Edge caching.
    - **Stripe**: Cổng thanh toán trực tuyến quốc tế và cơ chế hoàn tiền tự động.
    - **Google SMTP**: Dịch vụ email thông báo và mã kích hoạt OTP.
 
@@ -35,7 +34,7 @@ Sơ đồ phác thảo kiến trúc luồng dữ liệu, bảo vệ tồn kho (C
 - **Runtime & Framework**: Node.js, Express.js (v4.21)
 - **Database & ODM**: MongoDB, Mongoose (v8.12)
 - **Xác thực & Bảo mật**: JSON Web Token (`jsonwebtoken`), `bcryptjs`, `cookie-parser`, `cors`
-- **Lưu trữ hình ảnh**: `multer` Disk Storage (Lưu trữ ảnh nội bộ máy chủ trong `uploads/`)
+- **Lưu trữ & Phân phối Media**: Cloudinary SDK (`cloudinary` v2), `multer` MemoryStorage (Direct Memory Buffer Streaming)
 - **Thanh toán**: Stripe SDK (`stripe` v18) + Webhook listener
 - **Email Service**: `nodemailer`
 - **Công cụ hỗ trợ**: `dotenv`, `moment`, `nodemon`

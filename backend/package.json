@@ -7,13 +7,16 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/test_concurrency.js",
+    "test": "node tests/test_concurrency.js && node tests/test_cloud_upload.js",
+    "test:concurrency": "node tests/test_concurrency.js",
+    "test:cloud": "node tests/test_cloud_upload.js",
     "start": "nodemon index.js",
     "dev": "nodemon index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.11.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
