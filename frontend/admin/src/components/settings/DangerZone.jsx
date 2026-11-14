@@ -18,7 +18,7 @@ const DangerZone = () => {
 			toast.success(data.message);
 			dispatch(setUserDetails(null)); 
 			dispatch(logoutUser());     
-			window.location.href = "http://localhost:3000";
+			window.location.href = import.meta.env.VITE_STOREFRONT_URL || "http://localhost:3002";
 		}
 		if (data.error) {
 			toast.error(data.message);

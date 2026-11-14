@@ -33,24 +33,25 @@ function App() {
 				});
 				const data = await res.json();
 
+				const storefrontUrl = import.meta.env.VITE_STOREFRONT_URL || "http://localhost:3002";
 				if (data.success) {
 					const userData = data.user || data.data;
 
 					if (userData.role !== "ADMIN") {
 						dispatch(setUserDetails(null));
-						window.location.href = "http://localhost:3000";
+						window.location.href = storefrontUrl;
 						return;
 					}
 
 					dispatch(setUserDetails(userData));
 				} else {
 					dispatch(setUserDetails(null)); 
-					window.location.href = "http://localhost:3000";
+					window.location.href = storefrontUrl;
 				}
 			} catch (error) {
 				toast.error("Something went wrong");
 				dispatch(setUserDetails(null)); 
-				window.location.href = "http://localhost:3000";
+				window.location.href = import.meta.env.VITE_STOREFRONT_URL || "http://localhost:3002";
 			} finally {
 				setIsLoadingUser(false);
 			}
