@@ -41,7 +41,7 @@ async function userSignInController(req, res) {
     const cookieName = user.role === "ADMIN" ? "admin_token" : "user_token";
     const tokenOptions = {
       httpOnly: true,
-      secure: true, 
+      secure: process.env.NODE_ENV === "production", 
     };
 
     res.cookie(cookieName, token, tokenOptions).status(200).json({
